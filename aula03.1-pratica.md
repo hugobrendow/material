@@ -174,7 +174,7 @@ public class UsuarioController {
     public RouterFunction<ServerResponse> createUsuario() {
         return RouterFunctions.route()
                 .POST(BASE_URL.concat("/{id}"), request -> request.bodyToMono(Usuario.class).flatMap(usuarioService::createUsuario)
-                        .flatMap(usuario -> ServerResponse.status(HttpStatus.CREATED).body(usuario, Usuario.class))).build();
+                        .flatMap(usuario -> ServerResponse.status(HttpStatus.CREATED).body(Mono.just(usuario), Usuario.class))).build();
     }
 
     @Bean
@@ -246,4 +246,4 @@ Após criado, executar o seguinte comando:
 docker-compose up -d
 ```
 
-11. Executar o run da sua aplicação e testar os endpoints criados.
+ 11. Executar o run da sua aplicação e testar os endpoints criados.u
