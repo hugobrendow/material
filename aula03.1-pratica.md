@@ -173,7 +173,7 @@ public class UsuarioController {
     @Bean
     public RouterFunction<ServerResponse> createUsuario() {
         return RouterFunctions.route()
-                .POST(BASE_URL.concat("/{id}"), request -> request.bodyToMono(Usuario.class).flatMap(usuarioService::createUsuario)
+                .POST(BASE_URL, request -> request.bodyToMono(Usuario.class).flatMap(usuarioService::createUsuario)
                         .flatMap(usuario -> ServerResponse.status(HttpStatus.CREATED).body(Mono.just(usuario), Usuario.class))).build();
     }
 
